@@ -83,6 +83,53 @@ using System.Collections.Generic;
 
 public class Program{
 
+  public static void DFS(int from, int to, List<List<int>> grafList, List <int> solusi, List <int> DFSTrack){
+    bool found = false;
+    bool backtrack = false;
+    solusi.Add(from);
+    DFSTrack.Add(from);
+    DFSUtil(from,to,grafList,solusi,DFSTrack,ref found,ref backtrack);
+  }
+  public static void DFSUtil(int from, int to, List<List<int>> grafList, List <int> solusi, List <int> DFSTrack,ref bool found,ref bool backtrack){
+    if(from == to)
+      {
+        found = true;
+        //Console.WriteLine("FOund");
+        //Console.WriteLine(from);
+        //solusi.Add(11111);
+        //DFSTrack.Add(11111);
+        // solusi.Add(from);
+        // DFSTrack.Add(from);
+      }
+    else if(grafList[from].Count == 0)
+    {
+      backtrack = true;
+
+      //Console.WriteLine("back");
+      //Console.WriteLine(from);
+      solusi.RemoveAt(solusi.Count-1);
+    }
+    else{
+      for(int i=0 ; i<grafList[from].Count;i++){
+        if(!found){
+          solusi.Add(grafList[from][i]);
+          DFSTrack.Add(grafList[from][i]);
+          DFSUtil(grafList[from][i],to,grafList,solusi,DFSTrack,ref found,ref backtrack);
+
+          if(!found && backtrack){
+            // Console.WriteLine("back");
+            // DFSTrack.Add(-999);
+            DFSTrack.Add(from);
+            backtrack = false;
+          }
+        }
+      }
+      if(!found)
+      {solusi.RemoveAt(solusi.Count-1);}
+      backtrack=true;
+    }
+
+  }
 
   public static void Main(){
     List<List<int>> tab = new List<List<int>>();
@@ -93,6 +140,9 @@ public class Program{
     konstruktor = new List<int>();
     }
 
+    List <int> solusi = new List<int>();
+    List <int> DFSTrack = new List<int>();
+
     tab[1].Add(2);
     tab[1].Add(3);
     tab[1].Add(7);
@@ -102,21 +152,36 @@ public class Program{
     tab[5].Add(6);
     tab[7].Add(8);
 
-    for(int i=0; i<9+1;i++){
-      if(tab[i].Count !=0)
-      {
-        foreach(int x in tab[i]){
-          Console.Write(x);
-          Console.Write(" ");
-        }
-        Console.WriteLine();
-      }
-      else
-      {
-        Console.Write("indeks ke ");
-        Console.Write(i);
-        Console.WriteLine("kosong");
-      }
+    // for(int i=0; i<9+1;i++){
+    //   if(tab[i].Count !=0)
+    //   {
+    //     foreach(int x in tab[i]){
+    //       Console.Write(x);
+    //       Console.Write(" ");
+    //     }
+    //     Console.WriteLine();
+    //   }
+    //   else
+    //   {
+    //     Console.Write("indeks ke ");
+    //     Console.Write(i);
+    //     Console.WriteLine("kosong");
+    //   }
+    // }
+
+    DFS(1,6,tab,solusi,DFSTrack);
+    foreach(int i in solusi){
+      Console.Write(i);
+      Console.Write(" ");
     }
+    Console.WriteLine();
+
+    foreach(int i in DFSTrack){
+      Console.Write(i);
+      Console.Write(" ");
+    }
+    Console.WriteLine();
+
+
   }
 }
