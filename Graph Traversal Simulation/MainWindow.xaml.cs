@@ -41,7 +41,6 @@ namespace Graph_Traversal_Simulation
                 for (int i = 1; i < maxQuery + 1; i++)
                 {
                     string query = lines[i];
-                    Console.WriteLine("Query " + i + query);
                     string result = Program.SolveQuery(query);
                     ResultBox.Text += query + " " + result + System.Environment.NewLine;
                 }
@@ -59,6 +58,11 @@ namespace Graph_Traversal_Simulation
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Graph_Exit(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

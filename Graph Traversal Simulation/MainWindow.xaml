@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:Graph_Traversal_Simulation"
         mc:Ignorable="d"
         x:Name="root"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,17 +20,18 @@
                                     Graph="{Binding ElementName=root,Path= WindowGraph}"
                                     LayoutAlgorithmType="FR"
                                     OverlapRemovalAlgorithmType="FSA"
-                                    HighlightAlgorithmType="Simple" />
+                                    HighlightAlgorithmType="Simple" Margin="-19,0,-8,0" />
         </zoom:ZoomControl>
         <Label Content="Insert Query" HorizontalAlignment="Left" Margin="586,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="586,47,9.6,339" Grid.ColumnSpan="2">
             <TextBox Name="QueryText" HorizontalAlignment="Left" Height="33" Margin="0.2,0.2,-0.4,-1.2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="197" FontSize="20" TextChanged="TextBox_TextChanged"/>
         </Border>
         <Button Content="Solve" HorizontalAlignment="Left" Margin="586,86,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Button_Click"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="10,386,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Graph_Exit"/>
         <Label Content="Result" HorizontalAlignment="Left" Margin="586,158,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="586,195,9.6,10" Grid.ColumnSpan="2">
             <ScrollViewer>
-                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="213" Width="197" FontSize="15"/>
+                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="23743" Width="197" FontSize="15"/>
             </ScrollViewer>
         </Border>
 

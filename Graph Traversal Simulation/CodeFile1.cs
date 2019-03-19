@@ -79,7 +79,6 @@ namespace Graph_Traversal_Simulation
 
         private static int JumlahRumah = 0;
         private static List<Node> arr;
-        private static string[] querylist;
         private static List<List<int>> house;
 
         public static void setJumlahRumah(int n)
@@ -161,7 +160,7 @@ namespace Graph_Traversal_Simulation
             List<int> solusi = new List<int>();
             List<int> DFSTrack = new List<int>();
 
-            Console.Write(q);
+            //Console.Write(q);
 
             if (code == 0)
             { //Mendekati istana
