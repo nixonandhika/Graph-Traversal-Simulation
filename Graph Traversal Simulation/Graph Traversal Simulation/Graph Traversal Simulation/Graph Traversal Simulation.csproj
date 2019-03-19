@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0B94D484-4C94-40BD-81BC-37BB6FBA414A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Graph_Traversal_Simulation</RootNamespace>
     <AssemblyName>Graph Traversal Simulation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -34,18 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GraphSharp">
-      <HintPath>..\GraphSharp.dll</HintPath>
+      <HintPath>..\..\..\GraphSharp.dll</HintPath>
     </Reference>
     <Reference Include="GraphSharp.Controls">
-      <HintPath>..\GraphSharp.Controls.dll</HintPath>
+      <HintPath>..\..\..\GraphSharp.Controls.dll</HintPath>
     </Reference>
     <Reference Include="QuickGraph">
-      <HintPath>..\QuickGraph.dll</HintPath>
+      <HintPath>..\..\..\QuickGraph.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,7 +59,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WPFExtensions">
-      <HintPath>..\WPFExtensions.dll</HintPath>
+      <HintPath>..\..\..\WPFExtensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -70,7 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CodeFile1.cs" />
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
