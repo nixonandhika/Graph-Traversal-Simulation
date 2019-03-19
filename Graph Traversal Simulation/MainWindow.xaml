@@ -31,7 +31,9 @@
         <Label Content="Result" HorizontalAlignment="Left" Margin="800,153,0,0" VerticalAlignment="Top" FontSize="25" Height="37" Width="95"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="800,195,9.6,10" Grid.ColumnSpan="2">
             <ScrollViewer>
-                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" TextWrapping ="Wrap" VerticalAlignment="Top" Height="50000" Width="240" FontSize="15"/>
+                <StackPanel>
+                    <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" TextWrapping ="Wrap" VerticalAlignment="Top" Height="500" Width="240" FontSize="15"/>
+                </StackPanel>
             </ScrollViewer>
         </Border>
 
