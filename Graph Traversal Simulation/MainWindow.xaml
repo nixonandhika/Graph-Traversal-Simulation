@@ -7,31 +7,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graph_Traversal_Simulation"
         mc:Ignorable="d"
-        x:Name="root"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="450" Width="800">
+        x:Name="root"
+        Title="MainWindow" Height="720" Width="1080">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="372*"/>
-            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <zoom:ZoomControl Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
+        <zoom:ZoomControl Margin="0,1,0,-1">
             <graphsharp:GraphLayout x:Name="graphLayout"
                                     Graph="{Binding ElementName=root,Path= WindowGraph}"
                                     LayoutAlgorithmType="FR"
                                     OverlapRemovalAlgorithmType="FSA"
                                     HighlightAlgorithmType="Simple" Margin="-19,0,-8,0" />
         </zoom:ZoomControl>
-        <Label Content="Insert Query" HorizontalAlignment="Left" Margin="586,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="586,47,9.6,339" Grid.ColumnSpan="2">
-            <TextBox Name="QueryText" HorizontalAlignment="Left" Height="33" Margin="0.2,0.2,-0.4,-1.2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="197" FontSize="20" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Insert Query" HorizontalAlignment="Left" Margin="800,0,0,0" VerticalAlignment="Top" FontSize="25" Height="43" Width="167"/>
+        <Border BorderBrush="Black" BorderThickness="0" Margin="800,51,76,601">
+            <TextBox Name="QueryText" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188" FontSize="20" TextChanged="TextBox_TextChanged"/>
         </Border>
-        <Button Content="Solve" HorizontalAlignment="Left" Margin="586,86,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Button_Click"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="27,367,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Graph_Exit"/>
-        <Label Content="Result" HorizontalAlignment="Left" Margin="586,158,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="586,195,9.6,10" Grid.ColumnSpan="2">
+        <Button Content="Solve" HorizontalAlignment="Left" Margin="800,95,0,0" VerticalAlignment="Top" Width="117" FontSize="15" Click="Button_Click" Height="37"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="41,617,0,0" VerticalAlignment="Top" Width="117" FontSize="15" Click="Graph_Exit" Height="44"/>
+        <Label Content="Result" HorizontalAlignment="Left" Margin="800,153,0,0" VerticalAlignment="Top" FontSize="25" Height="37" Width="95"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="800,195,9.6,10" Grid.ColumnSpan="2">
             <ScrollViewer>
-                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" TextWrapping ="Wrap" VerticalAlignment="Top" Height="23743" Width="175" FontSize="15"/>
+                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" TextWrapping ="Wrap" VerticalAlignment="Top" Height="50000" Width="240" FontSize="15"/>
             </ScrollViewer>
         </Border>
 
