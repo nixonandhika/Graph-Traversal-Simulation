@@ -27,11 +27,11 @@
             <TextBox Name="QueryText" HorizontalAlignment="Left" Height="33" Margin="0.2,0.2,-0.4,-1.2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="197" FontSize="20" TextChanged="TextBox_TextChanged"/>
         </Border>
         <Button Content="Solve" HorizontalAlignment="Left" Margin="586,86,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Button_Click"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="10,386,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Graph_Exit"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="27,367,0,0" VerticalAlignment="Top" Width="75" FontSize="15" Click="Graph_Exit"/>
         <Label Content="Result" HorizontalAlignment="Left" Margin="586,158,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="586,195,9.6,10" Grid.ColumnSpan="2">
             <ScrollViewer>
-                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="23743" Width="197" FontSize="15"/>
+                <TextBox Name="ResultBox" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Left" Text="" TextWrapping ="Wrap" VerticalAlignment="Top" Height="23743" Width="175" FontSize="15"/>
             </ScrollViewer>
         </Border>
 

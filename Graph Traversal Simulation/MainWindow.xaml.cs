@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GraphSharp;
+using GraphSharp.Controls;
 using QuickGraph;
 
 namespace Graph_Traversal_Simulation
@@ -33,6 +35,7 @@ namespace Graph_Traversal_Simulation
         {
             Program.main(file1, file2);
             windowGraph = Program.AppGraph;
+
             InitializeComponent();
             if (file2 != "")
             {
@@ -43,6 +46,12 @@ namespace Graph_Traversal_Simulation
                     string query = lines[i];
                     string result = Program.SolveQuery(query);
                     ResultBox.Text += query + " " + result + System.Environment.NewLine;
+                    if(result == "YES")
+                    {
+                        ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
+                        ResultBox.Text += "Rute: " + System.Environment.NewLine + Program.getroute() + System.Environment.NewLine;
+                        ResultBox.Text += System.Environment.NewLine;
+                    }
                 }
             }
         }
@@ -53,6 +62,12 @@ namespace Graph_Traversal_Simulation
             QueryText.Text = "";
             string result = Program.SolveQuery(query);
             ResultBox.Text += query + " " + result + System.Environment.NewLine;
+            if (result == "YES")
+            {
+                ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
+                ResultBox.Text += "Rute: " + System.Environment.NewLine + Program.getroute() + System.Environment.NewLine;
+                ResultBox.Text += System.Environment.NewLine;
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

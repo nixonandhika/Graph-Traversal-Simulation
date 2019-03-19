@@ -80,6 +80,18 @@ namespace Graph_Traversal_Simulation
         private static int JumlahRumah = 0;
         private static List<Node> arr;
         private static List<List<int>> house;
+        private static string route = "";
+        private static string journey = "";
+
+        public static string getroute()
+        {
+            return route;
+        }
+
+        public static string getjourney()
+        {
+            return journey;
+        }
 
         public static void setJumlahRumah(int n)
         {
@@ -173,12 +185,15 @@ namespace Graph_Traversal_Simulation
                 {
                     solusi.Reverse();
                     DFSTrack.Reverse();
-                    return "YES";
-                    Console.Write("Rute: ");
-                    display(solusi);
+                    route = display(solusi);
                     List<int> DFSTrackrev = reverseTrack(DFSTrack, Y, X);
-                    Console.Write("   Langkah DFSnya : ");
-                    display(DFSTrackrev);
+                    journey = display(DFSTrackrev);
+                    return "YES";
+                    //Console.Write("Rute: ");
+                    //display(solusi);
+                    //List<int> DFSTrackrev = reverseTrack(DFSTrack, Y, X);
+                    //Console.Write("   Langkah DFSnya : ");
+                    //display(DFSTrackrev);
                 }
             }
 
@@ -191,6 +206,8 @@ namespace Graph_Traversal_Simulation
                 }
                 else
                 {
+                    route = display(solusi);
+                    journey = display(DFSTrack);
                     return "YES";
                     Console.Write("Rute: ");
                     display(solusi);
@@ -250,14 +267,20 @@ namespace Graph_Traversal_Simulation
         }
 
         //Prosedur untuk display isi List
-        public static void display(List<int> someList)
+        public static string display(List<int> someList)
         {
+            string res = "";
+            int i = 0;
             foreach (int elemen in someList)
             {
-                Console.Write(elemen);
-                Console.Write(" ");
+                res += elemen;
+                if (i < someList.Count-1)
+                {
+                    res += " - > ";
+                }
+                i++;
             }
-            Console.WriteLine();
+            return res;
         }
 
         //Fungsi yang mengakali isi TrackDFS untuk kasus dari daun menuju akar (rumah menuju istana)
