@@ -156,7 +156,6 @@ namespace Graph_Traversal_Simulation
             {
                 string[] bits = lines[i].Split(' ');
                 arr.Add(new Node(int.Parse(bits[0]), int.Parse(bits[1])));
-                //arr.Add(new Node(int.Parse(bits[1]), int.Parse(bits[0])));
             }
             List<Node> SortedList = arr.OrderBy(o => o.from).ToList();
             arr = SortedList;
@@ -171,8 +170,6 @@ namespace Graph_Traversal_Simulation
 
             List<int> solusi = new List<int>();
             List<int> DFSTrack = new List<int>();
-
-            //Console.Write(q);
 
             if (code == 0)
             { //Mendekati istana
@@ -189,11 +186,6 @@ namespace Graph_Traversal_Simulation
                     List<int> DFSTrackrev = reverseTrack(DFSTrack, Y, X);
                     journey = display(DFSTrackrev);
                     return "YES";
-                    //Console.Write("Rute: ");
-                    //display(solusi);
-                    //List<int> DFSTrackrev = reverseTrack(DFSTrack, Y, X);
-                    //Console.Write("   Langkah DFSnya : ");
-                    //display(DFSTrackrev);
                 }
             }
 
@@ -209,10 +201,6 @@ namespace Graph_Traversal_Simulation
                     route = display(solusi);
                     journey = display(DFSTrack);
                     return "YES";
-                    Console.Write("Rute: ");
-                    display(solusi);
-                    Console.Write("   Langkah DFSnya : ");
-                    display(DFSTrack);
                 }
             }
             else
@@ -258,6 +246,10 @@ namespace Graph_Traversal_Simulation
                             DFSTrack.Add(from);
                             backtrack = false;
                         }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
                 if (!found)

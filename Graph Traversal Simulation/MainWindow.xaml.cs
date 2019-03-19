@@ -48,8 +48,8 @@ namespace Graph_Traversal_Simulation
                     ResultBox.Text += query + " " + result + System.Environment.NewLine;
                     if(result == "YES")
                     {
-                        ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
                         ResultBox.Text += "Rute: " + System.Environment.NewLine + Program.getroute() + System.Environment.NewLine;
+                        ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
                         ResultBox.Text += System.Environment.NewLine;
                     }
                 }
@@ -64,8 +64,8 @@ namespace Graph_Traversal_Simulation
             ResultBox.Text += query + " " + result + System.Environment.NewLine;
             if (result == "YES")
             {
-                ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
                 ResultBox.Text += "Rute: " + System.Environment.NewLine + Program.getroute() + System.Environment.NewLine;
+                ResultBox.Text += "Langkah DFS: " + System.Environment.NewLine + Program.getjourney() + System.Environment.NewLine;
                 ResultBox.Text += System.Environment.NewLine;
             }
         }
