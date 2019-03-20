@@ -19,11 +19,12 @@ namespace Graph_Traversal_Simulation
     /// </summary>
     public partial class StartWindow : Window
     {
-        private string file1 = "";
-        private string file2 = "";
-        private bool input1 = false;
-        private bool input2 = false;
+        private string file1 = ""; //Untuk menyimpan path dari file graf
+        private string file2 = ""; //Untuk menyimpan path dari file query
+        private bool input1 = false; //boolean sebagai penanda file graf telah diinput
+        private bool input2 = false; //boolean sebagai penanda file query telah diinput
 
+        //Setter
         public void setfile1(string name)
         {
             file1 = name;
@@ -36,6 +37,7 @@ namespace Graph_Traversal_Simulation
             input2 = true;
         }
 
+        //Getter
         public string getfile1()
         {
             return file1;
@@ -56,11 +58,13 @@ namespace Graph_Traversal_Simulation
             return input2;
         }
 
+        //Initialize StartWindow
         public StartWindow()
         {
             InitializeComponent();
         }
 
+        //Graph File Browse Button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog f = new Microsoft.Win32.OpenFileDialog();
@@ -78,6 +82,7 @@ namespace Graph_Traversal_Simulation
             }
         }
 
+        //Query File Browse Button
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog f = new Microsoft.Win32.OpenFileDialog();
@@ -95,26 +100,28 @@ namespace Graph_Traversal_Simulation
             }
         }
 
+        //Start Button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (QueryButton.IsEnabled)
+            if (QueryButton.IsEnabled) //Jika menggunakan query file
             {
                 if (this.getinput1() && this.getinput2())
                 {
-                    MainWindow graphwindow = new MainWindow(this.getfile1(), this.getfile2());
+                    //Membuka MainWindow dengan file query
+                    MainWindow graphwindow = new MainWindow(this.getfile1(), this.getfile2()); 
                     graphwindow.Show();
-                    //this.Hide();
                 }
                 else
                 {
                     MessageBox.Show("Please Insert Both Graph and Query File Before Starting");
                 }
             }
-            else
+            else //Jika tidak menggunakan query file
             {
                 if (this.getinput1())
                 {
-                    MainWindow graphWindow = new MainWindow(this.getfile1(), "");
+                    //Membuka MainWindow tanpa file query
+                    MainWindow graphWindow = new MainWindow(this.getfile1(), ""); 
                     graphWindow.Show();
                 }
                 else
@@ -124,11 +131,13 @@ namespace Graph_Traversal_Simulation
             }
         }
 
+        //Exit Button
         private void Exit_Button(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
 
+        //Event Handler untuk CheckBox penggunaan query file
         private void QueryEnabled(object sender, RoutedEventArgs e)
         {
             QueryButton.IsEnabled = true;

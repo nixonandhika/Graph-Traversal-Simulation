@@ -8,18 +8,21 @@ using QuickGraph;
 
 namespace Graph_Traversal_Simulation
 {
-
+    //Kelas bentukan Node
     class Node : IEquatable<Node>
     {
         //Atribut
-        public int from;
-        public int to;
+        public int from; //Node awal
+        public int to; //Node tujuan
 
+        //Ctor
         public Node(int f, int t)
         {
             setfrom(f);
             setto(t);
         }
+
+        //Setter
         public void setfrom(int f)
         {
             from = f;
@@ -28,6 +31,8 @@ namespace Graph_Traversal_Simulation
         {
             to = t;
         }
+
+        //Getter
         public int getfrom()
         {
             return from;
@@ -36,6 +41,8 @@ namespace Graph_Traversal_Simulation
         {
             return to;
         }
+
+        //Override perbandingan
         public bool Equals(Node n)
         {
             return this.from == n.from && this.to == n.to;
@@ -48,18 +55,22 @@ namespace Graph_Traversal_Simulation
         /// The main entry point for the application.
         /// </summary>
         ///
+
+        //Deklarasi Graf Dua Arah
         private static IBidirectionalGraph<object, IEdge<object>> appGraph;
 
+        //Getter dan Setter Graf
         public static IBidirectionalGraph<object, IEdge<object>> AppGraph
         {
             get { return appGraph; }
         }
 
+        //Method Membuat Graf
         private static void CreateGraph(List<Node> arr, int n)
         {
             var g = new BidirectionalGraph<object, IEdge<object>>();
 
-            //add the vertices to the graph
+            //Menambah Simpul
             string[] vertices = new string[n];
             for (int i = 0; i < n; i++)
             {
@@ -67,37 +78,26 @@ namespace Graph_Traversal_Simulation
                 g.AddVertex(vertices[i]);
             }
 
-            //add some edges to the graph
+            //Menambah Edge
             for (int i = 0; i < arr.Count; i++)
             {
+                //Edge Ditambah 2 kali karena 2 arah
                 g.AddEdge(new Edge<object>(getElFrom(i).ToString(), getElTo(i).ToString()));
                 g.AddEdge(new Edge<object>(getElTo(i).ToString(), getElFrom(i).ToString()));
             }
 
+            //Assign graf yang mau ditampilkan dengan g
             appGraph = g;
         }
 
-        private static int JumlahRumah = 0;
-        private static List<Node> arr;
-        private static List<List<int>> house;
-        private static string route = "";
-        private static string journey = "";
+        //Atribut
+        private static int JumlahRumah = 0; //Jumlah node yang ada
+        private static List<Node> arr; //List of Node untuk menyimpan edge dari file
+        private static List<List<int>> house; //List of List of int untuk mengisi ketetanggaan dari setiap simpul
+        private static string route = ""; //String untuk menyimpan rute dari node awal ke node tujuan jika jawaban == "YA"
+        private static string journey = ""; //String untuk menyimpan rute yang ditempul DFS untuk mencari rute ke node tujuan
 
-        public static string getroute()
-        {
-            return route;
-        }
-
-        public static string getjourney()
-        {
-            return journey;
-        }
-
-        public static void setJumlahRumah(int n)
-        {
-            JumlahRumah = n;
-        }
-
+        //Getter
         public static int getJumlahRumah()
         {
             return JumlahRumah;
@@ -112,6 +112,24 @@ namespace Graph_Traversal_Simulation
         {
             return arr[idx].getto();
         }
+
+        public static string getroute()
+        {
+            return route;
+        }
+
+        public static string getjourney()
+        {
+            return journey;
+        }
+
+        //Setter
+        public static void setJumlahRumah(int n)
+        {
+            JumlahRumah = n;
+        }
+
+        
 
         public static void main(string file1, string file2)
         {
@@ -144,68 +162,69 @@ namespace Graph_Traversal_Simulation
             }
         }
 
-        //Pada dasarnya membaca file eksternal berupa map rumah
+        //Pada dasarnya membaca file eksternal berupa map rumah (hubungan edge antar simpul)
         static void BacaFileGraf(ref List<Node> arr, ref int n, string file1)
         {
             string path = file1;
-            string[] lines = File.ReadAllLines(path, Encoding.UTF8);
+            string[] lines = File.ReadAllLines(path, Encoding.UTF8); //menyimpan semua isi file dalam array of string
 
-            n = int.Parse(lines[0]);
+            n = int.Parse(lines[0]); //baris pertama file yang disimpan pada lines[0] yang berisi jumlah simpul disimpan
 
             for (int i = 1; i < n; i++)
             {
-                string[] bits = lines[i].Split(' ');
-                arr.Add(new Node(int.Parse(bits[0]), int.Parse(bits[1])));
+                string[] bits = lines[i].Split(' '); //Memisahkan spasi dari baris menjadi 3, yaitu kode 0/1, simpul tujuan, dan simpul awal
+                arr.Add(new Node(int.Parse(bits[0]), int.Parse(bits[1]))); //Menambahkan ke list of Node simpul awal dan simpul tujuan
             }
-            List<Node> SortedList = arr.OrderBy(o => o.from).ToList();
+            List<Node> SortedList = arr.OrderBy(o => o.from).ToList(); //Melakukan sort list of Node
             arr = SortedList;
         }
 
+        //Method untuk menyelesaikan suatu query
         public static string SolveQuery(string q)
         {
-            string[] bits = q.Split(' ');
-            int code = int.Parse(bits[0]);
-            int X = int.Parse(bits[1]);
-            int Y = int.Parse(bits[2]);
+            string[] bits = q.Split(' '); //Pemisahan isi query menjadi kode 0/1, simpul tujuan, dan simpulan awal
+            int code = int.Parse(bits[0]); //Berisi kode; 0 untuk bergerak mendekati istana; 1 untuk bergerak menjauhi istana
+            int X = int.Parse(bits[1]); //Berisi simpul tujuan
+            int Y = int.Parse(bits[2]); //Berisi simpul awal
 
-            List<int> solusi = new List<int>();
-            List<int> DFSTrack = new List<int>();
+            List<int> solusi = new List<int>(); //List of int untuk menyimpan rute solusi
+            List<int> DFSTrack = new List<int>(); //List of int untuk menyimpan jalur pencarian DFS
 
-            if (code == 0)
+            if (code == 0) //Jika bergerak mendekati istana
             { //Mendekati istana
-                DFS(X, Y, house, solusi, DFSTrack);
-                if (solusi.Count == 0)
+                DFS(X, Y, house, solusi, DFSTrack); //X dan Y ditukar sehingga DFS dari simpul X ke simpul Y
+                if (solusi.Count == 0) //Jika tidak ada solusi, mengembalikan "TIDAK"
                 {
-                    return "NO";
+                    return "TIDAK";
                 }
-                else
+                else //Jika ada solusi, mengembalikan "YA"
                 {
-                    solusi.Reverse();
+                    solusi.Reverse(); //Karena X dan Y ditukar, solusi juga perlu direverse
                     DFSTrack.Reverse();
                     route = display(solusi);
                     List<int> DFSTrackrev = reverseTrack(DFSTrack, Y, X);
                     journey = display(DFSTrackrev);
-                    return "YES";
+                    return "YA";
                 }
             }
 
-            else if (code == 1)
+            else if (code == 1) //Jika bergerak menjauhi istana
             { //Menjauhi istana
-                DFS(Y, X, house, solusi, DFSTrack);
-                if (solusi.Count == 0)
+                DFS(Y, X, house, solusi, DFSTrack); //DFS dari simpul Y ke X
+                if (solusi.Count == 0) //Jika tidak ada solusi, mengembalikan "TIDAK"
                 {
-                    return "NO";
+                    return "TIDAK";
                 }
-                else
+                else //Jika ada, mengembalikan "YA"
                 {
                     route = display(solusi);
                     journey = display(DFSTrack);
-                    return "YES";
+                    return "YA";
                 }
             }
-            else
+            else //Jika kode bukan nol atau 1, mengembalikan "INPUT SALAH"
             {
-                return "YES";
+                return "INPUT SALAH";
             }
         }
 
@@ -222,18 +241,18 @@ namespace Graph_Traversal_Simulation
         //Dibantu dengan utility dari DFS
         public static void DFSUtil(int from, int to, List<List<int>> grafList, List<int> solusi, List<int> DFSTrack, ref bool found, ref bool backtrack)
         {
-            if (from == to)
+            if (from == to) //Jika simpul awal sama dengan simpul tujuan, berarti mungkin dicapai
             {
                 found = true;
             }
-            else if (grafList[from].Count == 0)
+            else if (grafList[from].Count == 0) //Jika DFS telah mencapai daun, lakukan backtrack
             {
                 backtrack = true;
                 solusi.RemoveAt(solusi.Count - 1);
             }
             else
             {
-                for (int i = 0; i < grafList[from].Count; i++)
+                for (int i = 0; i < grafList[from].Count; i++) //Loop hingga ketemu / semua daun telah ditelusuri
                 {
                     if (!found)
                     {
@@ -259,7 +278,7 @@ namespace Graph_Traversal_Simulation
         }
 
         //Prosedur untuk display isi List
-        public static string display(List<int> someList)
+        public static string display(List<int> someList) //Untuk memgembalikan isi dari sebuah list dalam bentuk satu string
         {
             string res = "";
             int i = 0;

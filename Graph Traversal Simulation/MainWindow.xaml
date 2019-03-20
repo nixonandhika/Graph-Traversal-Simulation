@@ -23,8 +23,8 @@
                                     HighlightAlgorithmType="Simple" Margin="-19,0,-8,0" />
         </zoom:ZoomControl>
         <Label Content="Insert Query" HorizontalAlignment="Left" Margin="800,0,0,0" VerticalAlignment="Top" FontSize="25" Height="43" Width="167"/>
-        <Border BorderBrush="Black" BorderThickness="0" Margin="800,51,76,601">
-            <TextBox Name="QueryText" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188" FontSize="20" TextChanged="TextBox_TextChanged"/>
+        <Border BorderBrush="Black" BorderThickness="0" Margin="800,51,73.6,610.4">
+            <TextBox Name="QueryText" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188" FontSize="20"/>
         </Border>
         <Button Content="Solve" HorizontalAlignment="Left" Margin="800,95,0,0" VerticalAlignment="Top" Width="117" FontSize="15" Click="Button_Click" Height="37"/>
         <Button Content="Exit" HorizontalAlignment="Left" Margin="41,617,0,0" VerticalAlignment="Top" Width="117" FontSize="15" Click="Graph_Exit" Height="44"/>
